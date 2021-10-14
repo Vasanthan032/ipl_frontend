@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<!-- <h1>Welcome to Home Page!!</h1> -->
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <header class="header">
+          <h1 class="heading header__item">Bowler's Records in 2019!</h1>
+    </header>
+    <table class="styled_table">
+      <thead>
+        <th>Name of the Bowler</th>
+        <th>Wickets taken in 2019</th>
+      </thead>
+      {% for bowler in object_list %}
+      <tbody>
+        <tr>
+          <td>{{ bowler.name }}</td>
+          <td>{{ bowler.wickets }}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+
+    </table>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
