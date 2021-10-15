@@ -5,6 +5,12 @@ from . import views
 app_name = 'analysis'
 
 urlpatterns = [
-    path('batsman', views.BatsmanView.as_view(template_name = 'analysis/batsman.html'), name = 'batsman'),
-    path('bowler', views.BowlerView.as_view(template_name = 'analysis/bowler.html'), name = 'bowler'),
+    path('batsman_top10', views.BatsmanTop10.as_view(), name = 'batsman_top10'),
+    path('batsman_score', views.BatsmanScore.as_view(), name = 'batsman_score'),
+    path('batsman_dismissal', views.BatsmanDismissal.as_view(), name = 'batsman_dismissal'),
+    path('batsman_boundaries', views.BatsmanBoundaries.as_view(), name = 'batsman_boundaries'),
+    path('batsman_mom', views.BatsmanMOM.as_view(), name = 'batsman_mom'),
+    path('bowler_top10', views.BowlerTop10.as_view(), name = 'bowler_top10'),
+    path('bowler_wickets', views.BowlerWickets.as_view(), name = 'bowler_wickets'),
+    path('bowlers_rival', views.BowlerRival.as_view(), name = 'bowlers_rival'),
 ]
