@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% load django_bootstrap5 %}
 {% block body_block %}
+{% load static %}
 <div class="container container__item landing-page-container">
   <div class="content__wrapper">
     <div class="main">
@@ -12,8 +13,19 @@
       </ul>
     </div>
     <div class="page-content">
-      <h1 align = "center">Top 10 Bowler of the Season!</h1>
+      <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-default" value="Submit">
+     </form>
+     <img src="{% static 'graph/bowlers/top_10_bowlers.jpg' %}" class="img-fluid" alt="Top 10 Bowlers">
     </div>
+     
+    <!-- <div class="row">
+      <picture>
+        <img src="{% static 'graph/bowlers/top_10_bowlers.jpg' %}" class="img-fluid" alt="Top 10 Bowlers">
+      </picture>
+    </div> -->
   </div>
 </div>
   </div>
