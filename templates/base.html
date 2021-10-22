@@ -31,7 +31,8 @@
           <ul class="nav navbar-right">
             {% if user.is_authenticated %}
                   <li><a href="{% url 'analysis:batsman_top10' %}" class="btn btn-simple nav-link">Batsman</a></li>
-                  <li><a href="{% url 'analysis:bowler_top10' %}" class="btn btn-simple nav-link">Bowler</a></li>
+                  <li><a href="{% url 'analysis:bowler' %}" class="btn btn-simple nav-link">Bowler</a></li>
+                  <li><a href="{% url 'analysis:team' %}" class="btn btn-simple nav-link">Team</a></li>
                   <li><a href="{% url 'users:logout' %}" class="btn btn-simple nav-link">Log out</a></li>
             {% else %}
                   <li><a href="{% url 'users:login' %}" class="btn btn-simple nav-link">Log in</a></li>

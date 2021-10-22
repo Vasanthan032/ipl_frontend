@@ -10,7 +10,11 @@ urlpatterns = [
     path('batsman_dismissal', views.BatsmanDismissal.as_view(), name = 'batsman_dismissal'),
     path('batsman_boundaries', views.BatsmanBoundaries.as_view(), name = 'batsman_boundaries'),
     path('batsman_mom', views.BatsmanMOM.as_view(), name = 'batsman_mom'),
+    path('bowler', views.Bowler.as_view(), name = 'bowler'),
     path('bowler_top10', views.BowlerTop10.as_view(), name = 'bowler_top10'),
+    path('bowler_match_wise', views.BowlerMatchWise.as_view(), name = 'bowler_match_wise'),
     path('bowler_wickets', views.BowlerWickets.as_view(), name = 'bowler_wickets'),
     path('bowlers_rival', views.BowlerRival.as_view(), name = 'bowlers_rival'),
+    path('team', views.Team.as_view(), name = 'team'),
+    path('team_stadium_name_with_max_win', views.TeamStadiumNameWithMaxWin.as_view(), name = 'team_stadium_name_with_max_win'),
 ]
