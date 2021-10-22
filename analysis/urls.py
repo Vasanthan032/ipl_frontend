@@ -15,4 +15,6 @@ urlpatterns = [
     path('bowler_match_wise', views.BowlerMatchWise.as_view(), name = 'bowler_match_wise'),
     path('bowler_wickets', views.BowlerWickets.as_view(), name = 'bowler_wickets'),
     path('bowlers_rival', views.BowlerRival.as_view(), name = 'bowlers_rival'),
+    path('team', views.Team.as_view(), name = 'team'),
+    path('team_stadium_name_with_max_win', views.TeamStadiumNameWithMaxWin.as_view(), name = 'team_stadium_name_with_max_win'),
 ]

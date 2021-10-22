@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block body_block %}
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <div class="main">
+    <div class="sidebar">
+      <ul>
+        <li><a href="{% url 'analysis:team_stadium_name_with_max_win' %}"><i class=""></i><span>Max Win</span></a></li>
+      </ul>
+    </div>
+    <div class="page-content">
+      <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary" value="Submit">
+     </form>
+      <h1>Stadium name where team has won maximum match</h1>
+      {% if data %}
+        <div class="col">
+          <table class="styled_table">
+            <thead>
+              <th>Team</th>
+              <th>Stadium</th>
+              <th>Matches Won</th>
+            </thead>
+          {% for value in data %}
+            <tbody>
+              <tr>
+                <td>{{ value.winner }}</td>
+                <td>{{ value.venue }}</td>
+                <td>{{ value.matches_won }}</td>
+              </tr>
+            </tbody>
+          {% endfor %}
+          </table>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
