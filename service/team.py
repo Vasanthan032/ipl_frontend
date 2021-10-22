@@ -10,3 +10,9 @@ class TeamService:
     data = requests.get(url, params=params)
     result = data.json()
     return result
+  
+  def get_team_home_ground(self):
+    url = f'{self.BASE_URL}/get_team_home_ground'
+    data = requests.get(url)
+    result = data.json()
+    return result
