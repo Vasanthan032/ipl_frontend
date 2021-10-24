@@ -15,8 +15,8 @@ class BatsmenTop10(LoginRequiredMixin,  generic.ListView):
         return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class})
     def post(self,request):
         data = request.POST
-        batsmen_Service = BatsmenService()
-        file_path = batsmen_Service.get_top_10_batsmen(data['year'])
+        batsmen_service = BatsmenService()
+        file_path = batsmen_service.get_top_10_batsmen(data['year'])
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class,
                       'file_path':file_path})
@@ -29,9 +29,18 @@ class BatsmanScore(LoginRequiredMixin, generic.ListView):
     model = models.Batsman
     template_name = 'analysis/batsmen/batsman_score.html'
 
-class BatsmanDismissal(LoginRequiredMixin, generic.ListView):
-    model = models.Batsman
-    template_name = 'analysis/batsmen/batsman_dismissal.html'
+class BatsmenDismissal(LoginRequiredMixin, generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        data = batsmen_service.get_top_batsman_dismissal()
+        form_class = forms.FilterForm
+        return render(request,'analysis/team/batsmen_dismissal.html',{'form':form_class,
+                      'data':data})
+
 
 class BatsmenSixes(LoginRequiredMixin, generic.ListView):
     def get(self,request):
@@ -39,8 +48,8 @@ class BatsmenSixes(LoginRequiredMixin, generic.ListView):
         return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class})
     def post(self,request):
         data = request.POST
-        batsmen_Service = BatsmenService()
-        file_path = batsmen_Service.get_top_six_hitters(data['year'])
+        batsmen_service = BatsmenService()
+        file_path = batsmen_service.get_top_six_hitters(data['year'])
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class,
                       'file_path':file_path})
@@ -51,8 +60,8 @@ class BatsmenFours(LoginRequiredMixin, generic.ListView):
         return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class})
     def post(self,request):
         data = request.POST
-        batsmen_Service = BatsmenService()
-        file_path = batsmen_Service.get_top_four_hitters(data['year'])
+        batsmen_service = BatsmenService()
+        file_path = batsmen_service.get_top_four_hitters(data['year'])
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class,
                       'file_path':file_path})

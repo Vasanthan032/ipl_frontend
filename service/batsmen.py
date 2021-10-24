@@ -36,7 +36,7 @@ class BatsmenService:
                           x_col="batsman_name",y_col='fours')
       return file_name
 
-  def get_top_batsman_dismissal(self,year):
+  def get_top_batsman_dismissal(self):
       url = f'{self.BASE_URL}/get_batsmen_vs_bowler'
       data = requests.get(url)
       batsman_bowler_dismissal = data.json()
