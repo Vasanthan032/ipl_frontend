@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-
+{% load django_bootstrap5 %}
+{% load static %}
 {% block body_block %}
+
 <div class="container container__item landing-page-container">
   <div class="content__wrapper">
     <div class="main">
@@ -10,11 +12,19 @@
         <li><a href="{% url 'analysis:batsman_dismissal' %}"><i class=""></i><span>Batsman Dismisal</span></a></li>
         <li><a href="{% url 'analysis:batsman_score' %}"><i class=""></i><span>Runs Scored</span></a></li>
         <li><a href="{% url 'analysis:batsman_mom' %}""><i class=""></i><span>MOM Batsman</span></a></li>
-        <li><a href="{% url 'analysis:batsman_boundaries' %}"><i class=""></i><span>Boundries</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_sixes' %}"><i class=""></i><span>Six Hitters</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_fours' %}"><i class=""></i><span>Four Hitters</span></a></li>
     </ul>
     </div>
     <div class="page-content">
-      <h1 align = "center">Top 10 Batsman of the Season!</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-primary" value="Submit">
+       </form>
+        {% if file_path %}
+        <img src="{% static file_path %}" class="img-fluid" alt="Top 10 Batsmen">
+        {% endif %}
     </div>
   </div>
 </div>
