@@ -31,14 +31,18 @@ class BatsmanScore(LoginRequiredMixin, generic.ListView):
 
 class BatsmenDismissal(LoginRequiredMixin, generic.ListView):
     def get(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        data = batsmen_service.get_top_batsman_dismissal()
         form_class = forms.FilterForm
-        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class})
+        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class,
+                      'data':data})
     def post(self,request):
         data = request.POST
         batsmen_service = BatsmenService()
         data = batsmen_service.get_top_batsman_dismissal()
         form_class = forms.FilterForm
-        return render(request,'analysis/team/batsmen_dismissal.html',{'form':form_class,
+        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class,
                       'data':data})
 
 
