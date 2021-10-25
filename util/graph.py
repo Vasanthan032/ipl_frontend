@@ -18,3 +18,15 @@ class Graph:
     file_saving_path = f'{self.base_file_path}/{file_path}' 
     plt.savefig(file_saving_path,bbox_inches = 'tight')
     return file_path
+
+
+  def create_batsmen_barplot(self,df,x_label,y_label,x_col,y_col):
+    plt.figure(figsize=(12,6),dpi=100)
+    sns.set_theme(style="whitegrid")
+    ax = sns.barplot(x=x_col,y=y_col,data=df,palette="rocket")
+    ax.set(xlabel='', ylabel='')
+    ax.tick_params(axis='x', rotation=30)
+    file_path = f'graph/batsmen/{uuid.uuid4()}.jpg'
+    file_saving_path = f'{self.base_file_path}/{file_path}' 
+    plt.savefig(file_saving_path,bbox_inches = 'tight')
+    return file_path

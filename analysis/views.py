@@ -5,28 +5,66 @@ from django.shortcuts import get_object_or_404
 from . import models,forms
 from pathlib import Path
 from service.bowlers import BowlersService
+from service.batsmen import BatsmenService
 from service.team import TeamService
 
 # Create your views here.
-class BatsmanTop10(LoginRequiredMixin, generic.ListView):
-    model = models.Batsman
-    template_name = 'analysis/batsman/batsman_top10.html'
+class BatsmenTop10(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        file_path = batsmen_service.get_top_10_batsmen(data['year'])
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class,
+                      'file_path':file_path})
 
 class BatsmanMOM(LoginRequiredMixin, generic.ListView):
     model = models.Batsman
-    template_name = 'analysis/batsman/batsman_mom.html'
+    template_name = 'analysis/batsmen/batsman_mom.html'
 
 class BatsmanScore(LoginRequiredMixin, generic.ListView):
     model = models.Batsman
-    template_name = 'analysis/batsman/batsman_score.html'
+    template_name = 'analysis/batsmen/batsman_score.html'
 
-class BatsmanDismissal(LoginRequiredMixin, generic.ListView):
-    model = models.Batsman
-    template_name = 'analysis/batsman/batsman_dismissal.html'
+class BatsmenDismissal(LoginRequiredMixin, generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        data = batsmen_service.get_top_batsman_dismissal()
+        form_class = forms.FilterForm
+        return render(request,'analysis/team/batsmen_dismissal.html',{'form':form_class,
+                      'data':data})
 
-class BatsmanBoundaries(LoginRequiredMixin, generic.ListView):
-    model = models.Batsman
-    template_name = 'analysis/batsman/batsman_boundaries.html'
+
+class BatsmenSixes(LoginRequiredMixin, generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        file_path = batsmen_service.get_top_six_hitters(data['year'])
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class,
+                      'file_path':file_path})
+
+class BatsmenFours(LoginRequiredMixin, generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        file_path = batsmen_service.get_top_four_hitters(data['year'])
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class,
+                      'file_path':file_path})
 
 class BowlerTop10(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
@@ -79,3 +117,7 @@ class BowlerWickets(LoginRequiredMixin,  generic.ListView):
 class BowlerRival(LoginRequiredMixin,  generic.ListView):
     model = models.Bowler
     template_name = 'analysis/bowler/bowler_rival.html'
+
+class Batsmen(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        return render(request,'analysis/batsmen/home.html')
