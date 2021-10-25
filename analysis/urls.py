@@ -24,4 +24,5 @@ urlpatterns = [
     path('team', views.Team.as_view(), name = 'team'),
     path('team_stadium_name_with_max_win', views.TeamStadiumNameWithMaxWin.as_view(), name = 'team_stadium_name_with_max_win'),
     path('team_winning_percentage', views.WiningPercentage.as_view(), name = 'team_winning_percentage'),
+    path('team_man_of_the_match', views.ManOfTheMatch.as_view(), name = 'team_man_of_the_match'),
 ]

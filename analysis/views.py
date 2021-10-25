@@ -136,3 +136,15 @@ class WiningPercentage(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/team/team_winning_percentage.html',{'form':form_class,
                       'file_path':file_path})
+
+class ManOfTheMatch(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/team/team_man_of_the_match.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        team_Service = TeamService()
+        file_path = team_Service.get_man_of_the_match(data['year'])
+        form_class = forms.FilterForm
+        return render(request,'analysis/team/team_man_of_the_match.html',{'form':form_class,
+                      'file_path':file_path})

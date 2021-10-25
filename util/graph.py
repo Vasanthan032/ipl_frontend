@@ -40,3 +40,14 @@ class Graph:
     file_saving_path = f'{self.base_file_path}/{file_path}'
     plt.savefig(file_saving_path,bbox_inches = 'tight')
     return file_path
+
+  def create_mom_barplot(self,df,x_label,y_label,x_col,y_col):
+    plt.figure(figsize=(12,6),dpi=100)
+    sns.set_theme(style="whitegrid")
+    ax = sns.barplot(x=df.loc[x_col],y=df.loc[y_col],palette="rocket")
+    ax.set(xlabel=x_label, ylabel=y_label)
+    ax.tick_params(axis='x', rotation=30)
+    file_path = f'graph/bowlers/{uuid.uuid4()}.jpg'
+    file_saving_path = f'{self.base_file_path}/{file_path}'
+    plt.savefig(file_saving_path,bbox_inches = 'tight')
+    return file_path
