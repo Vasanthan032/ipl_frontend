@@ -9,6 +9,11 @@ from service.batsmen import BatsmenService
 from service.team import TeamService
 
 # Create your views here.
+#Batsmen's View classes
+class Batsmen(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        return render(request,'analysis/batsmen/home.html')
+
 class BatsmenTop10(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
         form_class = forms.FilterForm
@@ -21,24 +26,20 @@ class BatsmenTop10(LoginRequiredMixin,  generic.ListView):
         return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class,
                       'file_path':file_path})
 
-class BatsmanMOM(LoginRequiredMixin, generic.ListView):
-    model = models.Batsman
-    template_name = 'analysis/batsmen/batsman_mom.html'
-
-class BatsmanScore(LoginRequiredMixin, generic.ListView):
-    model = models.Batsman
-    template_name = 'analysis/batsmen/batsman_score.html'
-
 class BatsmenDismissal(LoginRequiredMixin, generic.ListView):
     def get(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        data = batsmen_service.get_top_batsman_dismissal()
         form_class = forms.FilterForm
-        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class})
+        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class,
+                      'data':data})
     def post(self,request):
         data = request.POST
         batsmen_service = BatsmenService()
         data = batsmen_service.get_top_batsman_dismissal()
         form_class = forms.FilterForm
-        return render(request,'analysis/team/batsmen_dismissal.html',{'form':form_class,
+        return render(request,'analysis/batsmen/batsmen_dismissal.html',{'form':form_class,
                       'data':data})
 
 
@@ -78,6 +79,11 @@ class BatsmenMatchWise(LoginRequiredMixin,  generic.ListView):
         return render(request,'analysis/batsmen/batsmen_match_wise.html',{'form':form_class,
                       'match_wise_details':match_wise_details})
 
+#Bowler's View classes
+class Bowler(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        return render(request,'analysis/bowler/home.html')
+
 class BowlerTop10(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
         form_class = forms.FilterForm
@@ -102,10 +108,7 @@ class BowlerMatchWise(LoginRequiredMixin,  generic.ListView):
         return render(request,'analysis/bowler/bowler_match_wise.html',{'form':form_class,
                       'match_wise_details':match_wise_details})
 
-class Bowler(LoginRequiredMixin,  generic.ListView):
-    def get(self,request):
-        return render(request,'analysis/bowler/home.html')
-
+#Teams's View classes
 class Team(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
         return render(request,'analysis/team/home.html')
@@ -122,14 +125,14 @@ class TeamStadiumNameWithMaxWin(LoginRequiredMixin,  generic.ListView):
         return render(request,'analysis/team/team_stadium_name_max_win.html',{'form':form_class,
                       'data':data})
 
-class BowlerWickets(LoginRequiredMixin,  generic.ListView):
-    model = models.Bowler
-    template_name = 'analysis/bowler/bowler_wickets.html'
-
-class BowlerRival(LoginRequiredMixin,  generic.ListView):
-    model = models.Bowler
-    template_name = 'analysis/bowler/bowler_rival.html'
-
-class Batsmen(LoginRequiredMixin,  generic.ListView):
+class WiningPercentage(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
-        return render(request,'analysis/batsmen/home.html')
+        form_class = forms.FilterForm
+        return render(request,'analysis/team/team_winning_percentage.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        team_Service = TeamService()
+        file_path = team_Service.get_winning_percentage(data['year'])
+        form_class = forms.FilterForm
+        return render(request,'analysis/team/team_winning_percentage.html',{'form':form_class,
+                      'file_path':file_path})

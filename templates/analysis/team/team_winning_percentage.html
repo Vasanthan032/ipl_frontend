@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
-{% block body_block %}
 {% load static %}
+
+{% block body_block %}
 <div class="container container__item landing-page-container">
   <div class="content__wrapper">
     <div class="main">
     <div class="sidebar">
       <ul>
-        <li><a href="" class = "active"><i class=""></i><span>Top 10 Bowlers</span></a></li>
-        <li><a href="{% url 'analysis:bowler_match_wise' %}"><i class=""></i><span>Match Wise</span></a></li>
+        <li><a href="{% url 'analysis:team_stadium_name_with_max_win' %}"><i class=""></i><span>Max Win</span></a></li>
+        <li><a href="" class="active"><i class=""></i><span>Winning Toss </span></a></li>
       </ul>
     </div>
     <div class="page-content">
       <form method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
-      <input type="submit" class="btn btn-primary" value="Submit">
-     </form>
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
       {% if file_path %}
-      <img src="{% static file_path %}" class="img-fluid" alt="Top 10 Bowlers">
+        <img src="{% static file_path %}" class="img-fluid" alt="Top 10 Bowlers">
       {% endif %}
     </div>
 
@@ -27,8 +28,7 @@
         <img src="{% static 'graph/bowlers/top_10_bowlers.jpg' %}" class="img-fluid" alt="Top 10 Bowlers">
       </picture>
     </div> -->
+    </div>
   </div>
 </div>
-  </div>
-
 {% endblock %}

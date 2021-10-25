@@ -8,7 +8,8 @@
     <div class="main">
     <div class="sidebar">
       <ul>
-        <li><a href="{% url 'analysis:team_stadium_name_with_max_win' %}"><i class=""></i><span>Max Win</span></a></li>
+        <li><a href="" class="active"><i class=""></i><span>Max Win</span></a></li>
+        <li><a href="{% url 'analysis:team_winning_percentage' %}"><i class=""></i><span>Winning Toss </span></a></li>
       </ul>
     </div>
     <div class="page-content">
@@ -17,8 +18,8 @@
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary" value="Submit">
      </form>
-      <h1>Stadium name where team has won maximum match</h1>
       {% if data %}
+      <h1>Stadium name where team has won maximum match</h1>
         <div class="col">
           <table class="styled_table">
             <thead>
