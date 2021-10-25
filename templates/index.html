@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body_block %}
 <!-- <h1>Welcome to Home Page!!</h1> -->
@@ -6,36 +7,25 @@
   <div class="content__wrapper jumbotron">
     <div class="row">
     <header class="header">
-
-          <h1 class="heading header__item">Welcome to Home Page!</h1>
+          <h1 class="heading header__item">Welcome to IPL Analysis Website!</h1><br>
     </header>
     <div class="col-lg-6 col-md-12">
-    <h3 align = 'left'>About the Project:</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</p>
-    <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h4 align = 'left'>About the Project:</h4>
+    <p align='justify'>Our Website shows multiple Analysis of the Batsmen, Bowlers and Teams participated in Indian Premier League. The analysis is based on the factual data of each matches that are conducted in IPL tournament between the years 2008 - 2020.</p>
+    <p align='justify'>To view the reports made for each stream of the game, the users are requested to create an account in our website by providing required credentials. The provided data by the users are protected and are maintained with respect to our website’s privacy policy. After creating the account, the users can view the batsmen, bowlers and teams reports in its respective tabs displayed in the top right corner of the screen.</p>
+    <p align='justify'>For any issues in the website, please contact:</p>
+      <ul>
+        <li align='left'><a href="mailto: 142102014@smail.iitpkd.ac.in?subject=Feedback for IPL Analysis Website - to Vasanthan" class='a-name'>Vasanthan PV</a></li>
+        <li align='left'><a href="mailto: 142102002@smail.iitpkd.ac.in?subject=Feedback for IPL Analysis Website - to Anurag" class='a-name'>Anurag Kr</a></li>
+        <li align='left'><a href="mailto: 142102007@smail.iitpkd.ac.in?subject=Feedback for IPL Analysis Website - to Favaz" class='a-name'>Favaz Muhammed</a></li>
+      </ul>
   </div>
       <div class="col-lg-6 col-sm-12">
-      <table class="styled_table">
-        <thead>
-          <th>Teams</th>
-          <th>Stadiums</th>
-        </thead>
-        {% for obj in object_list %}
-        <tbody>
-          <tr>
-            <td>{{ obj.team }}</td>
-            <td>{{ obj.ground }}</td>
-          </tr>
-        </tbody>
-        {% endfor %}
-
-      </table>
+        <div><img src="{% static 'images/home1.jpg' %}" alt="ipl image" class="center-img-home" height="450rem"></div>
       </div>
       </div>
     </div>
+    <p align='center'>© Indian Institute of Technology, Palakkkad </p>
     </div>
 
 {% endblock %}
