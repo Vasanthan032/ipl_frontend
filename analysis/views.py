@@ -66,6 +66,18 @@ class BatsmenFours(LoginRequiredMixin, generic.ListView):
         return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class,
                       'file_path':file_path})
 
+class BatsmenMatchWise(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_match_wise.html',{'form':form_class})
+    def post(self,request):
+        data = request.POST
+        batsmen_service = BatsmenService()
+        match_wise_details = batsmen_service.get_batsmen_match_wise(data['year'])
+        form_class = forms.FilterForm
+        return render(request,'analysis/batsmen/batsmen_match_wise.html',{'form':form_class,
+                      'match_wise_details':match_wise_details})
+
 class BowlerTop10(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
         form_class = forms.FilterForm
