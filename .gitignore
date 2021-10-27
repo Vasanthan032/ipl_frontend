@@ -135,6 +135,7 @@ dmypy.json
 **/migrations/*
 **/**/migrations/*
 
-users/static/graph/bowler/
+users/static/graph/bowlers/
 users/static/graph/batsmen/
+users/static/graph/team/
 
