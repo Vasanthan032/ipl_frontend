@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body_block %}
 <div class="container container__item landing-page-container">
@@ -7,9 +8,13 @@
     <div class="sidebar">
       <ul>
         <li><a href="{% url 'analysis:team_stadium_name_with_max_win' %}"><i class=""></i><span>Max Win</span></a></li>
+        <li><a href="{% url 'analysis:team_winning_percentage' %}"><i class=""></i><span>Winning Toss</span></a></li>
+        <li><a href="{% url 'analysis:team_man_of_the_match' %}"><i class=""></i><span>Man of the Match</span></a></li>
       </ul>
     </div>
     <div class="page-content">
+      <h1 align='center'>Welcome to Teams Analysis Page!!</h1>
+      <div><img src="{% static 'images/team.png' %}" alt="ipl image" class="center-img" height="450rem"></div>
     </div>
   </div>
 </div>

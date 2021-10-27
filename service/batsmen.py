@@ -5,7 +5,7 @@ from util.graph import Graph
 class BatsmenService:
   def __init__(self):
     self.BASE_URL = 'http://localhost:8000/api/batsmen'
-    self.graph = Graph()   
+    self.graph = Graph()
   def get_top_10_batsmen(self,year):
       url = f'{self.BASE_URL}/get_top_batsmen'
       params = {'year': year}
@@ -14,7 +14,7 @@ class BatsmenService:
       df = pd.DataFrame(top_10_batsmen)
       file_name = self.graph.create_batsmen_barplot(df=df,x_label='Batsman Name', y_label='Runs Scored',
                           x_col="batsman_name",y_col='runs_scored')
-      return file_name 
+      return file_name
 
   def get_top_six_hitters(self,year):
       url = f'{self.BASE_URL}/get_six_hitters'
@@ -24,7 +24,7 @@ class BatsmenService:
       df = pd.DataFrame(top_six_hitters)
       file_name = self.graph.create_batsmen_barplot(df=df,x_label='Batsman Name', y_label='Sixes',
                           x_col="batsman_name",y_col='sixes')
-      return file_name 
+      return file_name
 
   def get_top_four_hitters(self,year):
       url = f'{self.BASE_URL}/get_four_hitters'
@@ -41,3 +41,10 @@ class BatsmenService:
       data = requests.get(url)
       batsman_bowler_dismissal = data.json()
       return batsman_bowler_dismissal
+
+  def get_batsmen_match_wise(self,year,limit=10,offset=0):
+      url = f'{self.BASE_URL}/get_batsmen_details_match_wise'
+      params = {'year': year,'limit':limit,'offset':offset}
+      data = requests.get(url, params=params)
+      batsmen_match_wise_details = data.json()
+      return batsmen_match_wise_details

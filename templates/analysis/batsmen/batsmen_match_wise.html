@@ -7,8 +7,11 @@
     <div class="main">
     <div class="sidebar">
       <ul>
-        <li><a href="{% url 'analysis:bowler_top10' %}" class = ""><i class=""></i><span>Top 10 Bowlers</span></a></li>
-        <li><a href="" class="active"><i></i><span>Match Wise</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_top10' %}"><i class=""></i><span>Top 10 Batsmen</span></a></li>
+        <li><a href="" class="active"><i ></i><span>Macth Wise</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_dismissal' %}"><i class=""></i><span>Batsmen Dismisal</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_sixes' %}"><i class=""></i><span>Six Hitters</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_fours' %}" class=""><i class=""></i><span>Four Hitters</span></a></li>
       </ul>
     </div>
     <div class="page-content">
@@ -17,10 +20,11 @@
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary" value="Submit">
      </form>
+     <br>
       {% if match_wise_details %}
-        <div class="col-lg-6 col-sm-12">
+        <div class="col">
         {% for key,value in match_wise_details.items %}
-         <h1 class="align-self-center">Match Info</h1>
+         <h1 class="align-self-center">Match Held on {{ value.match_info.date }}</h1>
           <table class="styled_table">
             <thead>
               <th>City</th>
@@ -37,28 +41,30 @@
               </tr>
             </tbody>
           </table>
-          <h1>Bowlers Details</h1>
+          <h1>Batsmen Details</h1>
            <table class="styled_table">
             <thead>
               <th>Name</th>
               <th>Team</th>
-              <th>Wickets Taken</th>
-              <th>Runs Given</th>
-              <th>Overs Bowled</th>
-              <th>Economy</th>
+              <th>Runs Scored</th>
+              <th>Dismissal Type</th>
+              <th>Dismissed Bowler</th>
             </thead>
-          {% for bowler in value.bowlers_info %}
+          {% for batsman in value.batsman_info %}
             <tbody>
               <tr>
-                <td>{{ bowler.name }}</td>
-                <td>{{ bowler.team }}</td>
-                <td>{{ bowler.wickets_taken }}</td>
-                <td>{{ bowler.runs_given }}</td>
-                <td>{{ bowler.overs_bowled }}</td>
-                <td>{{ bowler.economy }}</td>
+                <td>{{ batsman.name }}</td>
+                <td>{{ batsman.team }}</td>
+                <td>{{ batsman.runs_scored }}</td>
+                {% if batsman.nature_of_dismissal == null %}
+                  <td>Not Out</td>
+                {% else %}
+                  <td>{{ batsman.nature_of_dismissal }}</td>
+                {% endif %}
+                <td>{{ batsman.bowler_got_out }}</td>
               </tr>
             </tbody>
-            {% endfor %}
+          {% endfor %}
           </table>
         {% endfor %}
       </div>
