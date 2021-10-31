@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django import forms
 
 YEAR_CHOICES = [('2008','2008'),('2009','2009'),('2010','2010'),
                 ('2011','2011'),('2012','2012'),('2013','2013'),
@@ -8,6 +9,10 @@ YEAR_CHOICES = [('2008','2008'),('2009','2009'),('2010','2010'),
                 ('overall','Overall')]
 class Filter(models.Model):
     year = models.CharField(max_length=10,choices=YEAR_CHOICES,default='overall')
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField()
+
 
 class FilterForm(ModelForm):
   class Meta:

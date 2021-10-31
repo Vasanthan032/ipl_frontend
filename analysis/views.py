@@ -7,6 +7,7 @@ from pathlib import Path
 from service.bowlers import BowlersService
 from service.batsmen import BatsmenService
 from service.team import TeamService
+from service.upload import UploadService
 
 # Create your views here.
 #Batsmen's View classes
@@ -148,3 +149,30 @@ class ManOfTheMatch(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/team/team_man_of_the_match.html',{'form':form_class,
                       'file_path':file_path})
+
+#Upload's View classes
+class Upload(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        return render(request,'analysis/upload/home.html')
+
+class UploadMatchDetails(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        form_class = forms.UploadFileForm
+        return render(request,'analysis/upload/match_details.html',{'form':form_class})
+    def post(self,request):
+        form = forms.UploadFileForm(request.POST,request.FILES)
+        upload_service = UploadService()
+        result = upload_service.match_details(request)
+        form_class = forms.UploadFileForm
+        return render(request,'analysis/upload/match_details.html',{'form':form_class})
+
+class UploadBallDetails(LoginRequiredMixin,  generic.ListView):
+    def get(self,request):
+        form_class = forms.UploadFileForm
+        return render(request,'analysis/upload/ball_details.html',{'form':form_class})
+    def post(self,request):
+        form = forms.UploadFileForm(request.POST,request.FILES)
+        upload_service = UploadService()
+        result = upload_service.match_details(request)
+        form_class = forms.UploadFileForm
+        return render(request,'analysis/upload/ball_details.html',{'form':form_class})

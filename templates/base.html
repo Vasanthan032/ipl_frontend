@@ -30,6 +30,7 @@
           </ul>
           <ul class="nav navbar-right">
             {% if user.is_authenticated %}
+                   <li><a href="{% url 'analysis:upload' %}" class="btn btn-simple nav-link">Upload</a></li>
                   <li><a href="{% url 'analysis:batsmen' %}" class="btn btn-simple nav-link">Batsmen</a></li>
                   <li><a href="{% url 'analysis:bowler' %}" class="btn btn-simple nav-link">Bowler</a></li>
                   <li><a href="{% url 'analysis:team' %}" class="btn btn-simple nav-link">Team</a></li>
