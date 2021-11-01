@@ -90,21 +90,23 @@ class BowlerTop10(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/bowler/bowler_top10.html',{'form':form_class})
     def post(self,request):
-        data = request.POST
+        print(request.POST)
         bowler_Service = BowlersService()
-        file_path = bowler_Service.get_top_10_bowlers(data['year'])
+        file_path = bowler_Service.get_top_10_bowlers(request.POST)
         form_class = forms.FilterForm
+        is_data_exist = True
+        if file_path is None:
+            is_data_exist = False 
         return render(request,'analysis/bowler/bowler_top10.html',{'form':form_class,
-                      'file_path':file_path})
+                      'file_path':file_path,'is_data_exist':is_data_exist})
 
 class BowlerMatchWise(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
         form_class = forms.FilterForm
         return render(request,'analysis/bowler/bowler_match_wise.html',{'form':form_class})
     def post(self,request):
-        data = request.POST
         bowler_service = BowlersService()
-        match_wise_details = bowler_service.get_bowlers_match_wise(data['year'])
+        match_wise_details = bowler_service.get_bowlers_match_wise(request.POST)
         form_class = forms.FilterForm
         return render(request,'analysis/bowler/bowler_match_wise.html',{'form':form_class,
                       'match_wise_details':match_wise_details})

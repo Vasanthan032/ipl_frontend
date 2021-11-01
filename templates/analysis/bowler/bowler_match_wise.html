@@ -20,7 +20,7 @@
       {% if match_wise_details %}
         <div class="col-lg-6 col-sm-12">
         {% for key,value in match_wise_details.items %}
-         <h1 class="align-self-center">Match Info</h1>
+         <h1 class="align-self-center">Match Held on {{ value.match_info.date }}</h1>
           <table class="styled_table">
             <thead>
               <th>City</th>

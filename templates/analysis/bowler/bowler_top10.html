@@ -17,16 +17,17 @@
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary" value="Submit">
      </form>
-      {% if file_path %}
+      <br/>
+     {% if file_path %}
       <img src="{% static file_path %}" class="img-fluid" alt="Top 10 Bowlers">
+     {% endif %}
+      
+      {% if is_data_exist == False %}
+        <div class="alert alert-danger" role="alert">
+            No Data To Display
+        </div>
       {% endif %}
     </div>
-
-    <!-- <div class="row">
-      <picture>
-        <img src="{% static 'graph/bowlers/top_10_bowlers.jpg' %}" class="img-fluid" alt="Top 10 Bowlers">
-      </picture>
-    </div> -->
   </div>
 </div>
   </div>
