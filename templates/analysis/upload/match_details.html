@@ -17,6 +17,26 @@
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary" value="Upload">
      </form>
+     <br/>
+
+     {% if status_code >= 500 %}
+        <div class="alert alert-danger" role="alert">
+            Data Insertion Failed!
+        </div>
+      {% endif %}
+
+     {% if status_code == 400 %}
+        <div class="alert alert-danger" role="alert">
+            Error While Insertion!
+        </div>
+      {% endif %}
+      
+      {% if status_code == 201 %}
+        <div class="alert alert-success" role="alert">
+            Data Insertion Successfull!
+        </div>
+      {% endif %}
+
     </div>
   </div>
 </div>

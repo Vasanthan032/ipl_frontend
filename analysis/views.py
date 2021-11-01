@@ -166,7 +166,8 @@ class UploadMatchDetails(LoginRequiredMixin,  generic.ListView):
         upload_service = UploadService()
         result = upload_service.match_details(request)
         form_class = forms.UploadFileForm
-        return render(request,'analysis/upload/match_details.html',{'form':form_class})
+        return render(request,'analysis/upload/match_details.html',
+        {'form':form_class,'status_code':result})
 
 class UploadBallDetails(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
@@ -175,6 +176,7 @@ class UploadBallDetails(LoginRequiredMixin,  generic.ListView):
     def post(self,request):
         form = forms.UploadFileForm(request.POST,request.FILES)
         upload_service = UploadService()
-        result = upload_service.match_details(request)
+        result = upload_service.ball_details(request)
         form_class = forms.UploadFileForm
-        return render(request,'analysis/upload/ball_details.html',{'form':form_class})
+        return render(request,'analysis/upload/ball_details.html',
+        {'form':form_class,'status_code':result})
