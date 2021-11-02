@@ -23,5 +23,8 @@ class BowlersService:
     url = f'{self.BASE_URL}/get_bowlers_match_wise'
     params = {'limit':limit,'offset':offset}
     data = requests.get(url,data=request,params=params)
-    bowlers_match_wise_details = data.json()
-    return bowlers_match_wise_details
+    try:
+      bowlers_match_wise_details = data.json()
+      return bowlers_match_wise_details
+    except Exception as err:
+      return None

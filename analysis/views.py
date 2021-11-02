@@ -108,8 +108,11 @@ class BowlerMatchWise(LoginRequiredMixin,  generic.ListView):
         bowler_service = BowlersService()
         match_wise_details = bowler_service.get_bowlers_match_wise(request.POST)
         form_class = forms.FilterForm
+        is_data_exist = True
+        if match_wise_details is None:
+            is_data_exist = False 
         return render(request,'analysis/bowler/bowler_match_wise.html',{'form':form_class,
-                      'match_wise_details':match_wise_details})
+                      'match_wise_details':match_wise_details,'is_data_exist':is_data_exist})
 
 #Teams's View classes
 class Team(LoginRequiredMixin,  generic.ListView):

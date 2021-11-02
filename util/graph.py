@@ -9,7 +9,7 @@ class Graph:
     self.base_file_path = BASE_DIR.joinpath("users/static/")
 
   def create_bowler_barplot(self,df,x_label,y_label,x_col,y_col):
-    plt.figure(figsize=(12,6),dpi=100)
+    plt.figure(figsize=(15,8),dpi=100)
     plt.style.use('ggplot')
     sns.set_theme(style="whitegrid")
     ax = sns.barplot(x=x_col,y=y_col,data=df,hue='bowler_team',palette="Set2")
@@ -23,6 +23,7 @@ class Graph:
 
     ax.set(xlabel=x_label, ylabel=y_label)
     ax.tick_params(axis='x', rotation=30)
+    plt.setp(ax.patches, linewidth=0)
     plt.legend(title = 'Team Name', bbox_to_anchor=(1, 1))
     file_path = f'graph/bowlers/{uuid.uuid4()}.jpg'
     file_saving_path = f'{self.base_file_path}/{file_path}'
