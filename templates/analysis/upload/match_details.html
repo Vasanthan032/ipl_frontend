@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body_block %}
+{% load static %}
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <div class="main">
+    <div class="sidebar">
+      <ul>
+        <li><a href="" class = "active"><i class=""></i><span>Match Details</span></a></li>
+        <li><a href="{% url 'analysis:ball_details' %}"><i class=""></i><span>Ball Details</span></a></li>
+      </ul>
+    </div>
+    <div class="page-content">
+      <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary" value="Upload">
+     </form>
+     <br/>
+
+     {% if status_code >= 500 %}
+        <div class="alert alert-danger" role="alert">
+            Data Insertion Failed!
+        </div>
+      {% endif %}
+
+     {% if status_code == 400 %}
+        <div class="alert alert-danger" role="alert">
+            Error While Insertion!
+        </div>
+      {% endif %}
+      
+      {% if status_code == 201 %}
+        <div class="alert alert-success" role="alert">
+            Data Insertion Successfull!
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+  </div>
+
+{% endblock %}

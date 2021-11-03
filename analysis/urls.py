@@ -25,4 +25,9 @@ urlpatterns = [
     path('team_stadium_name_with_max_win', views.TeamStadiumNameWithMaxWin.as_view(), name = 'team_stadium_name_with_max_win'),
     path('team_winning_percentage', views.WiningPercentage.as_view(), name = 'team_winning_percentage'),
     path('team_man_of_the_match', views.ManOfTheMatch.as_view(), name = 'team_man_of_the_match'),
+
+    #Upload
+    path('upload', views.Upload.as_view(), name = 'upload'),
+    path('match_details', views.UploadMatchDetails.as_view(), name = 'match_details'),
+    path('ball_details', views.UploadBallDetails.as_view(), name = 'ball_details'),
 ]

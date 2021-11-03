@@ -7,19 +7,24 @@ class BowlersService:
     self.BASE_URL = 'http://localhost:8000/api/bowlers'
     self.graph = Graph()
   
-  def get_top_10_bowlers(self,year):
+  def get_top_10_bowlers(self,request):
     url = f'{self.BASE_URL}/get_top_bowlers'
-    params = {'year': year}
-    data = requests.get(url, params=params)
+    data = requests.get(url, data=request)
     top_10_bowlers = data.json()
     df = pd.DataFrame(top_10_bowlers)
-    file_name = self.graph.create_barplot(df=df,x_label='Bowler Name', y_label='Wickets Taken',
+    if len(df)>0:
+      file_name = self.graph.create_bowler_barplot(df=df,x_label='Bowler Name', y_label='Wickets Taken',
                           x_col="bowler_name",y_col='total_wickets_taken')
-    return file_name
+      return file_name
+    else:
+      return None
 
-  def get_bowlers_match_wise(self,year,limit=10,offset=0):
+  def get_bowlers_match_wise(self,request,limit=10,offset=0):
     url = f'{self.BASE_URL}/get_bowlers_match_wise'
-    params = {'year': year,'limit':limit,'offset':offset}
-    data = requests.get(url, params=params)
-    bowlers_match_wise_details = data.json()
-    return bowlers_match_wise_details
+    params = {'limit':limit,'offset':offset}
+    data = requests.get(url,data=request,params=params)
+    try:
+      bowlers_match_wise_details = data.json()
+      return bowlers_match_wise_details
+    except Exception as err:
+      return None
