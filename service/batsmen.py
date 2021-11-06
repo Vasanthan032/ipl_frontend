@@ -13,7 +13,7 @@ class BatsmenService:
       top_10_batsmen = data.json()
       df = pd.DataFrame(top_10_batsmen)
       file_name = self.graph.create_batsmen_barplot(df=df,year=params['year'],
-                          category='batsmen',x_label='Batsman Name', y_label='Runs Scored',
+                          category='batsmen', color='crimson', x_label='Batsman Name', y_label='Runs Scored',
                           x_col="batsman_name",y_col='runs_scored')
       return file_name
 
@@ -24,7 +24,7 @@ class BatsmenService:
       top_six_hitters = data.json()
       df = pd.DataFrame(top_six_hitters)
       file_name = self.graph.create_batsmen_barplot(df=df,year=params['year'],
-                          category='six hitters',x_label='Batsman Name', y_label='Sixes',
+                          category='six hitters',color='limegreen',x_label='Batsman Name', y_label='Sixes',
                           x_col="batsman_name",y_col='sixes')
       return file_name
 
@@ -35,7 +35,7 @@ class BatsmenService:
       top_four_hitters = data.json()
       df = pd.DataFrame(top_four_hitters)
       file_name = self.graph.create_batsmen_barplot(df=df,year=params['year'],
-                          category='four hitters', x_label='Batsman Name', y_label='Fours',
+                          category='four hitters',color='tomato', x_label='Batsman Name', y_label='Fours',
                           x_col="batsman_name",y_col='fours')
       return file_name
 
