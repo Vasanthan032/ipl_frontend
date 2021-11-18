@@ -12,9 +12,9 @@ class BatsmenService:
       top_10_batsmen = data.json()
       df = pd.DataFrame(top_10_batsmen)
       if len(df)>0:
-          file_name = self.graph.create_batsmen_barplot(df=df, year = request.data['year'],
-                          team_name = request.data['team_name'],category='batsmen', 
-                          color='crimson', x_label='Batsman Name', y_label='Runs Scored',
+          file_name = self.graph.create_batsmen_barplot(df=df, year = request['year'],
+                          team_name = request['team_name'],category='batsmen', 
+                          color='c', x_label='Batsman Name', y_label='Runs Scored',
                           x_col="batsman_name",y_col='runs_scored')
           return file_name
       else:
@@ -27,8 +27,8 @@ class BatsmenService:
       df = pd.DataFrame(top_six_hitters)
       
       if len(df)>0:
-          file_name = self.graph.create_batsmen_barplot(df=df, year = request.data['year'],
-                          team_name = request.data['team_name'],category='six hitters',
+          file_name = self.graph.create_batsmen_barplot(df=df, year = request['year'],
+                          team_name = request['team_name'],category='six hitters',
                           color='limegreen',x_label='Batsman Name', y_label='Sixes',
                           x_col="batsman_name",y_col='sixes')
           return file_name
@@ -42,8 +42,8 @@ class BatsmenService:
       df = pd.DataFrame(top_four_hitters)
       
       if len(df)>0:
-          file_name = self.graph.create_batsmen_barplot(df=df,year = request.data['year'],
-                          team_name = request.data['team_name'],category='four hitters',
+          file_name = self.graph.create_batsmen_barplot(df=df,year = request['year'],
+                          team_name = request['team_name'],category='four hitters',
                           color='tomato', x_label='Batsman Name', y_label='Fours',
                           x_col="batsman_name",y_col='fours')
           return file_name

@@ -37,10 +37,10 @@ class Graph:
     ax = sns.barplot(y=x_col,x=y_col,data=df, color=color)
     ax.set(xlabel=y_label, ylabel='')
 
-    if team_name is None:
+    if team_name == 'None':
       ax.set_title(f'{year.upper()} TOP10 {category.upper()}', size=15)
     else:
-      ax.set_title(f'{team_name.upper},{year.upper()} TOP10 {category.upper()}', size=15)
+      ax.set_title(f'{str(team_name).upper()} {year.upper()} TOP10 {category.upper()}', size=15)
 
     for bar in ax.patches:
       ax.annotate('{:,.0f}'.format(bar.get_width()),
