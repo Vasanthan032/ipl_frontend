@@ -31,12 +31,16 @@ class Graph:
     return file_path
 
 
-  def create_batsmen_barplot(self,df,year,category,color, x_label,y_label,x_col,y_col):
+  def create_batsmen_barplot(self,df,year,team_name,category,color, x_label,y_label,x_col,y_col):
     plt.figure(figsize=(15,8),dpi=100)
     sns.set_theme(style="darkgrid")
     ax = sns.barplot(y=x_col,x=y_col,data=df, color=color)
     ax.set(xlabel=y_label, ylabel='')
-    ax.set_title(f'{year.upper()} TOP10 {category.upper()}', size=15)
+
+    if team_name is None:
+      ax.set_title(f'{year.upper()} TOP10 {category.upper()}', size=15)
+    else:
+      ax.set_title(f'{team_name.upper},{year.upper()} TOP10 {category.upper()}', size=15)
 
     for bar in ax.patches:
       ax.annotate('{:,.0f}'.format(bar.get_width()),
