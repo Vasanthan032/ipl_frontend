@@ -44,7 +44,7 @@ class BatsmenService:
       if len(df)>0:
           file_name = self.graph.create_batsmen_barplot(df=df,year = request['year'],
                           team_name = request['team_name'],category='four hitters',
-                          color='tomato', x_label='Batsman Name', y_label='Fours',
+                          color='orangered', x_label='Batsman Name', y_label='Fours',
                           x_col="batsman_name",y_col='fours')
           return file_name
       else:

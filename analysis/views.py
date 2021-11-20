@@ -20,7 +20,6 @@ class BatsmenTop10(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class})
     def post(self,request):
-        print(request.POST)
         batsmen_service = BatsmenService()
         file_path = batsmen_service.get_top_10_batsmen(request.POST)
         form_class = forms.FilterForm
@@ -52,7 +51,6 @@ class BatsmenSixes(LoginRequiredMixin, generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class})
     def post(self,request):
-        print(request.POST)
         batsmen_service = BatsmenService()
         file_path = batsmen_service.get_top_six_hitters(request.POST)
         form_class = forms.FilterForm
@@ -67,7 +65,6 @@ class BatsmenFours(LoginRequiredMixin, generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class})
     def post(self,request):
-        print(request.POST)
         batsmen_service = BatsmenService()
         file_path = batsmen_service.get_top_four_hitters(request.POST)
         form_class = forms.FilterForm
@@ -99,7 +96,6 @@ class BowlerTop10(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/bowler/bowler_top10.html',{'form':form_class})
     def post(self,request):
-        print(request.POST)
         bowler_Service = BowlersService()
         file_path = bowler_Service.get_top_10_bowlers(request.POST)
         form_class = forms.FilterForm

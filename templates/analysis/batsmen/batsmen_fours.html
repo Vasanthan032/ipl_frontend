@@ -25,6 +25,11 @@
         {% if file_path %}
         <img src="{% static file_path %}" class="img-fluid" alt="Top10 Six Hitters">
         {% endif %}
+        <br/>
+        {% if is_data_exist == False %}
+        <div class="alert alert-danger" role="alert">
+            No Data To Display
+        </div>
     </div>
   </div>
 </div>
