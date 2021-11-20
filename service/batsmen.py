@@ -6,35 +6,49 @@ class BatsmenService:
   def __init__(self):
     self.BASE_URL = 'http://localhost:8000/api/batsmen'
     self.graph = Graph()
-  def get_top_10_batsmen(self,year):
+  def get_top_10_batsmen(self,request):
       url = f'{self.BASE_URL}/get_top_batsmen'
-      params = {'year': year}
-      data = requests.get(url, params=params)
+      data = requests.get(url, data=request)
       top_10_batsmen = data.json()
       df = pd.DataFrame(top_10_batsmen)
-      file_name = self.graph.create_batsmen_barplot(df=df,x_label='Batsman Name', y_label='Runs Scored',
+      if len(df)>0:
+          file_name = self.graph.create_batsmen_barplot(df=df, year = request['year'],
+                          team_name = request['team_name'],category='batsmen', 
+                          color='c', x_label='Batsman Name', y_label='Runs Scored',
                           x_col="batsman_name",y_col='runs_scored')
-      return file_name
+          return file_name
+      else:
+          return None
 
-  def get_top_six_hitters(self,year):
+  def get_top_six_hitters(self,request):
       url = f'{self.BASE_URL}/get_six_hitters'
-      params = {'year': year}
-      data = requests.get(url, params=params)
+      data = requests.get(url, data=request)
       top_six_hitters = data.json()
       df = pd.DataFrame(top_six_hitters)
-      file_name = self.graph.create_batsmen_barplot(df=df,x_label='Batsman Name', y_label='Sixes',
+      
+      if len(df)>0:
+          file_name = self.graph.create_batsmen_barplot(df=df, year = request['year'],
+                          team_name = request['team_name'],category='six hitters',
+                          color='limegreen',x_label='Batsman Name', y_label='Sixes',
                           x_col="batsman_name",y_col='sixes')
-      return file_name
+          return file_name
+      else:
+          return None
 
-  def get_top_four_hitters(self,year):
+  def get_top_four_hitters(self,request):
       url = f'{self.BASE_URL}/get_four_hitters'
-      params = {'year': year}
-      data = requests.get(url, params=params)
+      data = requests.get(url, data=request)
       top_four_hitters = data.json()
       df = pd.DataFrame(top_four_hitters)
-      file_name = self.graph.create_batsmen_barplot(df=df,x_label='Batsman Name', y_label='Fours',
+      
+      if len(df)>0:
+          file_name = self.graph.create_batsmen_barplot(df=df,year = request['year'],
+                          team_name = request['team_name'],category='four hitters',
+                          color='tomato', x_label='Batsman Name', y_label='Fours',
                           x_col="batsman_name",y_col='fours')
-      return file_name
+          return file_name
+      else:
+          return None
 
   def get_top_batsman_dismissal(self):
       url = f'{self.BASE_URL}/get_batsmen_vs_bowler'

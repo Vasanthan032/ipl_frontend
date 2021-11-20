@@ -20,12 +20,15 @@ class BatsmenTop10(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class})
     def post(self,request):
-        data = request.POST
+        print(request.POST)
         batsmen_service = BatsmenService()
-        file_path = batsmen_service.get_top_10_batsmen(data['year'])
+        file_path = batsmen_service.get_top_10_batsmen(request.POST)
         form_class = forms.FilterForm
+        is_data_exist = True
+        if file_path is None:
+            is_data_exist = False
         return render(request,'analysis/batsmen/batsmen_top10.html',{'form':form_class,
-                      'file_path':file_path})
+                      'file_path':file_path,'is_data_exist':is_data_exist})
 
 class BatsmenDismissal(LoginRequiredMixin, generic.ListView):
     def get(self,request):
@@ -49,24 +52,30 @@ class BatsmenSixes(LoginRequiredMixin, generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class})
     def post(self,request):
-        data = request.POST
+        print(request.POST)
         batsmen_service = BatsmenService()
-        file_path = batsmen_service.get_top_six_hitters(data['year'])
+        file_path = batsmen_service.get_top_six_hitters(request.POST)
         form_class = forms.FilterForm
+        is_data_exist = True
+        if file_path is None:
+            is_data_exist = False
         return render(request,'analysis/batsmen/batsmen_sixes.html',{'form':form_class,
-                      'file_path':file_path})
+                      'file_path':file_path,'is_data_exist':is_data_exist})
 
 class BatsmenFours(LoginRequiredMixin, generic.ListView):
     def get(self,request):
         form_class = forms.FilterForm
         return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class})
     def post(self,request):
-        data = request.POST
+        print(request.POST)
         batsmen_service = BatsmenService()
-        file_path = batsmen_service.get_top_four_hitters(data['year'])
+        file_path = batsmen_service.get_top_four_hitters(request.POST)
         form_class = forms.FilterForm
+        is_data_exist = True
+        if file_path is None:
+            is_data_exist = False
         return render(request,'analysis/batsmen/batsmen_fours.html',{'form':form_class,
-                      'file_path':file_path})
+                      'file_path':file_path,'is_data_exist':is_data_exist})
 
 class BatsmenMatchWise(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
