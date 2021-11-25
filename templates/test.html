@@ -1,16 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body_block %}
 <!-- <h1>Welcome to Home Page!!</h1> -->
-<div class="container container__item landing-page-container">
-  <div class="content__wrapper">
+<div class="container container__item landing-page-container", align = 'center'>
+  <div class="content__wrapper green_jumbotron">
+    <h6><i>You are now logged in!!! We welcome you to explore our website!!!</i></h6>
+  </div>
+  <div class="content__wrapper jumbotron">
+    <div class="row">
     <header class="header">
-
-          <h1 class="heading header__item">You are now LOGGED IN!</h1>
-        </header>
-
+          <h1 class="heading header__item">Welcome to IPL Analysis Website!</h1><br>
+    </header>
+    <div class="col-lg-6 col-md-12">
+    <h4 align = 'left'>About the Project:</h4>
+    <p align='justify'>Our Website shows multiple Analysis of the Batsmen, Bowlers and Teams participated in Indian Premier League. The analysis is based on the factual data of each matches that are conducted in IPL tournament between the years 2008 - 2020.</p>
+    <p align='justify'>To view the reports made for each stream of the game, the users are requested to create an account in our website by providing required credentials. The provided data by the users are protected and are maintained with respect to our website’s privacy policy. After creating the account, the users can view the batsmen, bowlers and teams reports in its respective tabs displayed in the top right corner of the screen.</p>
+    <p align='justify'>For any issues in the website, please contact:</p>
+      <ul>
+        <li align='left'><a href="mailto: 142102014@smail.iitpkd.ac.in?subject=Feedback for IPL Analysis Website - to Vasanthan" class='a-name'>Vasanthan PV</a></li>
+        <li align='left'><a href="mailto: 142102002@smail.iitpkd.ac.in?subject=Feedback for IPL Analysis Website - to Anurag" class='a-name'>Anurag Kr. Singh</a></li>
+        <li align='left'><a href="mailto: 142102007@smail.iitpkd.ac.in?subject=Feedback for IPL Analysis Website - to Favaz" class='a-name'>Favaz Muhammed</a></li>
+      </ul>
+  </div>
+      <div class="col-lg-6 col-sm-12">
+        <div><img src="{% static 'images/home1.jpg' %}" alt="ipl image" class="center-img-home" height="450rem"></div>
       </div>
-
+      </div>
+    </div>
+    <p align='center'>© Indian Institute of Technology, Palakkkad </p>
     </div>
 
 {% endblock %}
