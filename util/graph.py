@@ -13,7 +13,7 @@ class Graph:
     plt.style.use('ggplot')
     sns.set_theme(style="whitegrid")
     ax = sns.barplot(x=x_col,y=y_col,data=df,hue='bowler_team',palette="Set2")
-    
+
     for bar in ax.patches:
       ax.annotate(bar.get_height(),
                    (bar.get_x() + bar.get_width() / 2,
@@ -55,13 +55,14 @@ class Graph:
     plt.savefig(file_saving_path,bbox_inches = 'tight')
     return file_path
 
-  def create_pi_chart(self,df,title,year):
+  def create_pi_chart(self,df,title,year,team_name):
     plt.figure(figsize=(12,6),dpi=100)
     x = df[year]['percentage']
     y = 100 - x
     ax = plt.pie([x,y], explode=[0.06,0], labels=['Toss won', 'Toss lost'], autopct='%1.1f%%',shadow=True, startangle=50)
     file_path = f'graph/team/{uuid.uuid4()}.jpg'
     file_saving_path = f'{self.base_file_path}/{file_path}'
+    plt.title(f'Winning Percentage if won the toss by team: {team_name} in year: {year}')
     plt.savefig(file_saving_path,bbox_inches = 'tight')
     return file_path
 
@@ -71,7 +72,7 @@ class Graph:
     ax = sns.barplot(x=df.loc[x_col],y=df.loc[y_col],palette="rocket")
     ax.set(xlabel=x_label, ylabel=y_label)
     ax.tick_params(axis='x', rotation=30)
-    file_path = f'graph/bowlers/{uuid.uuid4()}.jpg'
+    file_path = f'graph/team/{uuid.uuid4()}.jpg'
     file_saving_path = f'{self.base_file_path}/{file_path}'
     plt.savefig(file_saving_path,bbox_inches = 'tight')
     return file_path

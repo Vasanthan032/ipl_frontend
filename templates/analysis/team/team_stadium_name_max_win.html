@@ -19,7 +19,7 @@
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary" value="Submit">
      </form>
-      {% if data %}
+      {% if is_data_exist == True %}
       <h1>Stadium name where team has won maximum match</h1>
         <div class="col">
           <table class="styled_table">
@@ -28,7 +28,7 @@
               <th>Stadium</th>
               <th>Matches Won</th>
             </thead>
-          {% for value in data %}
+          {% for value in file_path %}
             <tbody>
               <tr>
                 <td>{{ value.winner }}</td>

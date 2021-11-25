@@ -101,7 +101,7 @@ class BowlerTop10(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         is_data_exist = True
         if file_path is None:
-            is_data_exist = False 
+            is_data_exist = False
         return render(request,'analysis/bowler/bowler_top10.html',{'form':form_class,
                       'file_path':file_path,'is_data_exist':is_data_exist})
 
@@ -115,7 +115,7 @@ class BowlerMatchWise(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         is_data_exist = True
         if match_wise_details is None:
-            is_data_exist = False 
+            is_data_exist = False
         return render(request,'analysis/bowler/bowler_match_wise.html',{'form':form_class,
                       'match_wise_details':match_wise_details,'is_data_exist':is_data_exist})
 
@@ -129,34 +129,40 @@ class TeamStadiumNameWithMaxWin(LoginRequiredMixin,  generic.ListView):
         form_class = forms.FilterForm
         return render(request,'analysis/team/team_stadium_name_max_win.html',{'form':form_class})
     def post(self,request):
-        data = request.POST
         team_service = TeamService()
-        data = team_service.get_stadium_name_with_max_win(data['year'])
+        data = request.POST
+        file_path = team_service.get_stadium_name_with_max_win(data['year'], data['team_name'])
+        # print('Hello')
         form_class = forms.FilterForm
+        is_data_exist = True
+        if file_path is None:
+            is_data_exist = False
+            print('empty')
+        # print('render')
         return render(request,'analysis/team/team_stadium_name_max_win.html',{'form':form_class,
-                      'data':data})
+                      'file_path':file_path,'is_data_exist':is_data_exist})
 
 class WiningPercentage(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
         form_class = forms.FilterForm
         return render(request,'analysis/team/team_winning_percentage.html',{'form':form_class})
     def post(self,request):
+        form_class = forms.FilterForm
         data = request.POST
         team_Service = TeamService()
-        file_path = team_Service.get_winning_percentage(data['year'])
-        form_class = forms.FilterForm
+        file_path = team_Service.get_winning_percentage(data['year'], data['team_name'])
         return render(request,'analysis/team/team_winning_percentage.html',{'form':form_class,
                       'file_path':file_path})
 
 class ManOfTheMatch(LoginRequiredMixin,  generic.ListView):
     def get(self,request):
-        form_class = forms.FilterForm
+        form_class = forms.FilterYearForm
         return render(request,'analysis/team/team_man_of_the_match.html',{'form':form_class})
     def post(self,request):
         data = request.POST
         team_Service = TeamService()
         file_path = team_Service.get_man_of_the_match(data['year'])
-        form_class = forms.FilterForm
+        form_class = forms.FilterYearForm
         return render(request,'analysis/team/team_man_of_the_match.html',{'form':form_class,
                       'file_path':file_path})
 
