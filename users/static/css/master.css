@@ -46,11 +46,7 @@
   /* border-color: #96fab1; */
   background-color: #d4ffd7;
 }
-.main {
-  height: calc(100% - 50px);
-  display: flex;
-  flex: 1;
-}
+
 .sidebar {
   height: 100%;
   width: 220px;
