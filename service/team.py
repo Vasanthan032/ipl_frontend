@@ -7,9 +7,9 @@ class TeamService:
     self.BASE_URL = 'http://localhost:8000/api/match_details'
     self.graph = Graph()
 
-  def get_stadium_name_with_max_win(self,year):
+  def get_stadium_name_with_max_win(self,year,team_name):
     url = f'{self.BASE_URL}/team_stadium_name_with_max_win'
-    params = {'year': year}
+    params = {'year': year, 'team_name': team_name}
     data = requests.get(url, params=params)
     result = data.json()
     return result
@@ -20,17 +20,21 @@ class TeamService:
     result = data.json()
     return result
 
-  def get_winning_percentage(self,year):
+  def get_winning_percentage(self,year,team_name):
     url = f'{self.BASE_URL}/winning_percentage'
-    data = requests.get(url)
+    params = {'year': year, 'team_name':team_name}
+    data = requests.get(url, params)
     winning_percentage = data.json()
+    print('hello2')
+
     df = pd.DataFrame(winning_percentage)
-    file_name = self.graph.create_pi_chart(df=df,title='Winning Percentage of a Team, if they won the toss', year=year)
+    print('hello1')
+    file_name = self.graph.create_pi_chart(df=df,title='Winning Percentage of a Team, if they won the toss', year=year, team_name=team_name)
     return file_name
 
   def get_man_of_the_match(self,year, limit=10):
     url = f'{self.BASE_URL}/man_of_the_match'
-    params = {'year': year, 'limit': limit}
+    params = {'year': year}
     data = requests.get(url, params=params)
     man_of_the_match = data.json()
     df = pd.DataFrame(man_of_the_match)

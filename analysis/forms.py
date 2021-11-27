@@ -24,6 +24,10 @@ class Filter(models.Model):
     year = models.CharField(max_length=10,choices=YEAR_CHOICES,default='overall')
     team_name = models.CharField(max_length=50,choices=TEAM_CHOICES,default='None')
 
+class Filter_year(models.Model):
+    year = models.CharField(max_length=10,choices=YEAR_CHOICES,default='overall')
+
+
 class UploadFileForm(forms.Form):
     file = forms.FileField()
 
@@ -31,4 +35,9 @@ class UploadFileForm(forms.Form):
 class FilterForm(ModelForm):
   class Meta:
     model = Filter
+    fields = '__all__'
+
+class FilterYearForm(ModelForm):
+  class Meta:
+    model = Filter_year
     fields = '__all__'
