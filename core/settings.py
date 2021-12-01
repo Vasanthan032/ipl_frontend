@@ -11,14 +11,14 @@ TEMPLATE_DIR = BASE_DIR.joinpath("templates")
 SECRET_KEY = 'django-insecure-_3fx-v!f8vl2sf1^=2#ce^&v4@l2^_osp!0i)swomz%*-39tog'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 URL = 'http://localhost:8000'
 
 if not DEBUG:
     URL = 'http://18.222.134.46'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -70,9 +70,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'database' : 'ipl_auth_db',
+            'user' : 'root',
+            'password' : 'root',
+            'init_command': 'SET sql_mode=NO_ENGINE_SUBSTITUTION',
+            'host': 'localhost',
+        }
     }
 }
 
