@@ -14,8 +14,8 @@ SECRET_KEY = 'django-insecure-_3fx-v!f8vl2sf1^=2#ce^&v4@l2^_osp!0i)swomz%*-39tog
 DEBUG = False
 URL = 'http://localhost:8000'
 
-if not DEBUG:
-    URL = 'http://18.222.134.46'
+# if not DEBUG:
+#     URL = 'http://18.222.134.46'
 
 
 ALLOWED_HOSTS = ['*']
@@ -24,6 +24,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'

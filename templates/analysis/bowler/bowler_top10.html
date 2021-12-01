@@ -19,7 +19,7 @@
      </form>
       <br/>
      {% if file_path %}
-      <img src="{% static file_path %}" class="img-fluid" alt="Top 10 Bowlers">
+      <img src={{file_path}} class="img-fluid" alt="Top 10 Bowlers">
      {% endif %}
 
       {% if is_data_exist == False %}
