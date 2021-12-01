@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body_block %}
+{% load static %}
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <div class="main row">
+    <div class="sidebar col-sm-6 col-lg-3 col-md-3">
+      <ul>
+        <li><a href="{% url 'analysis:batsmen_top10' %}"><i class=""></i><span>Top 10 Batsmen</span></a></li>
+        <li><a href="" class="active"><i ></i><span>Macth Wise</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_dismissal' %}"><i class=""></i><span>Batsmen Dismisal</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_sixes' %}"><i class=""></i><span>Six Hitters</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_fours' %}" class=""><i class=""></i><span>Four Hitters</span></a></li>
+      </ul>
+    </div>
+    <div class="page-content col-sm-6 col-lg-9 col-md-9">
+      <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary" value="Submit">
+     </form>
+     <br>
+      {% if match_wise_details %}
+        <div class="col">
+        {% for key,value in match_wise_details.items %}
+         <h1 class="align-self-center">Match Held on {{ value.match_info.date }}</h1>
+          <table class="styled_table">
+            <thead>
+              <th>City</th>
+              <th>Venue</th>
+              <th>Team 1</th>
+              <th>Team 2</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ value.match_info.city }}</td>
+                <td>{{ value.match_info.venue }}</td>
+                <td>{{ value.match_info.team_1 }}</td>
+                <td>{{ value.match_info.team_2 }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h1>Batsmen Details</h1>
+           <table class="styled_table">
+            <thead>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Runs Scored</th>
+              <th>Dismissal Type</th>
+              <th>Dismissed Bowler</th>
+            </thead>
+          {% for batsman in value.batsman_info %}
+            <tbody>
+              <tr>
+                <td>{{ batsman.name }}</td>
+                <td>{{ batsman.team }}</td>
+                <td>{{ batsman.runs_scored }}</td>
+                {% if batsman.nature_of_dismissal == null %}
+                  <td>Not Out</td>
+                {% else %}
+                  <td>{{ batsman.nature_of_dismissal }}</td>
+                {% endif %}
+                <td>{{ batsman.bowler_got_out }}</td>
+              </tr>
+            </tbody>
+          {% endfor %}
+          </table>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- <div class="row">
+      <picture>
+        <img src="{% static 'graph/bowlers/top_10_bowlers.jpg' %}" class="img-fluid" alt="Top 10 Bowlers">
+      </picture>
+    </div> -->
+  </div>
+</div>
+  </div>
+
+{% endblock %}

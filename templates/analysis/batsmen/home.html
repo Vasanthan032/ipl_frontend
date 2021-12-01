@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <div class="main row">
+    <div class="sidebar col-sm-6 col-lg-3 col-md-3">
+      <ul>
+        <li><a href="{% url 'analysis:batsmen_top10' %}"><i class=""></i><span>Top 10 Batsmen</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_match_wise' %}"><i class=""></i><span>Macth Wise</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_dismissal' %}"><i class=""></i><span>Batsmen Dismisal</span></a></li>
+
+        <li><a href="{% url 'analysis:batsmen_sixes' %}"><i class=""></i><span>Six Hitters</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_fours' %}"><i class=""></i><span>Four Hitters</span></a></li>
+    </ul>
+    </div>
+    <div class="page-content col-sm-6 col-lg-9 col-md-9">
+      <h1 align='center'>Welcome to Batsmen Analysis Page!!</h1>
+      <div><img src="{% static 'images/batsman.jpg' %}" alt="batsman image" class="center-img" height="400rem"></div>
+    </div>
+  </div>
+</div>
+  </div>
+
+{% endblock %}

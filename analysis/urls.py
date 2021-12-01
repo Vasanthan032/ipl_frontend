@@ -5,12 +5,29 @@ from . import views
 app_name = 'analysis'
 
 urlpatterns = [
-    path('batsman_top10', views.BatsmanTop10.as_view(), name = 'batsman_top10'),
-    path('batsman_score', views.BatsmanScore.as_view(), name = 'batsman_score'),
-    path('batsman_dismissal', views.BatsmanDismissal.as_view(), name = 'batsman_dismissal'),
-    path('batsman_boundaries', views.BatsmanBoundaries.as_view(), name = 'batsman_boundaries'),
-    path('batsman_mom', views.BatsmanMOM.as_view(), name = 'batsman_mom'),
+    #Batsmen
+    path('batsmen', views.Batsmen.as_view(), name = 'batsmen'),
+    path('batsmen_top10', views.BatsmenTop10.as_view(), name = 'batsmen_top10'),
+    path('batsmen_dismissal', views.BatsmenDismissal.as_view(), name = 'batsmen_dismissal'),
+    path('batsmen_sixes', views.BatsmenSixes.as_view(), name = 'batsmen_sixes'),
+    path('batsmen_fours', views.BatsmenFours.as_view(), name = 'batsmen_fours'),
+    path('batsmen_match_wise', views.BatsmenMatchWise.as_view(), name = 'batsmen_match_wise'),
+
+    #Bowler
+    path('bowler', views.Bowler.as_view(), name = 'bowler'),
     path('bowler_top10', views.BowlerTop10.as_view(), name = 'bowler_top10'),
-    path('bowler_wickets', views.BowlerWickets.as_view(), name = 'bowler_wickets'),
-    path('bowlers_rival', views.BowlerRival.as_view(), name = 'bowlers_rival'),
+    path('bowler_match_wise', views.BowlerMatchWise.as_view(), name = 'bowler_match_wise'),
+    # path('bowler_wickets', views.BowlerWickets.as_view(), name = 'bowler_wickets'),
+    # path('bowlers_rival', views.BowlerRival.as_view(), name = 'bowlers_rival'),
+
+    #Teams
+    path('team', views.Team.as_view(), name = 'team'),
+    path('team_stadium_name_with_max_win', views.TeamStadiumNameWithMaxWin.as_view(), name = 'team_stadium_name_with_max_win'),
+    path('team_winning_percentage', views.WiningPercentage.as_view(), name = 'team_winning_percentage'),
+    path('team_man_of_the_match', views.ManOfTheMatch.as_view(), name = 'team_man_of_the_match'),
+
+    #Upload
+    path('upload', views.Upload.as_view(), name = 'upload'),
+    path('match_details', views.UploadMatchDetails.as_view(), name = 'match_details'),
+    path('ball_details', views.UploadBallDetails.as_view(), name = 'ball_details'),
 ]

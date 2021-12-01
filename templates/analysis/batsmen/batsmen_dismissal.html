@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block body_block %}
+
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <div class="main row">
+    <div class="sidebar col-sm-6 col-lg-3 col-md-3">
+      <ul>
+        <li><a href="{% url 'analysis:batsmen_top10' %}"><i class=""></i><span>Top 10 Batsmen</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_match_wise' %}"><i class=""></i><span>Macth Wise</span></a></li>
+        <li><a href="" class="active"><i class=""></i><span>Batsmen Dismisal</span></a></li>
+
+        <li><a href="{% url 'analysis:batsmen_sixes' %}"><i class=""></i><span>Six Hitters</span></a></li>
+        <li><a href="{% url 'analysis:batsmen_fours' %}"><i class=""></i><span>Four Hitters</span></a></li>
+      </ul>
+    </div>
+    <div class="page-content col-sm-6 col-lg-9 col-md-9">
+      <!-- <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-primary" value="Submit">
+       </form> -->
+        <h1>Batsman vs Bowler Head to Head</h1>
+        {% if data %}
+          <div class="col">
+            <table class="styled_table">
+              <thead>
+                <th>Batsman</th>
+                <th>Bowler</th>
+                <th>No. of Times Dismissed</th>
+              </thead>
+            {% for value in data %}
+              <tbody>
+                <tr>
+                  <td>{{ value.batsmen_name }}</td>
+                  <td>{{ value.bowler_name }}</td>
+                  <td>{{ value.no_of_wickets }}</td>
+                </tr>
+              </tbody>
+            {% endfor %}
+            </table>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

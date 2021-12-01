@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body_block %}
+{% load static %}
+<div class="container container__item landing-page-container">
+  <div class="content__wrapper">
+    <div class="main row">
+    <div class="sidebar col-sm-6 col-lg-3 col-md-3">
+      <ul>
+        <li><a href="{% url 'analysis:bowler_top10' %}" class = ""><i class=""></i><span>Top 10 Bowlers</span></a></li>
+        <li><a href="" class="active"><i></i><span>Match Wise</span></a></li>
+      </ul>
+    </div>
+    <div class="page-content col-sm-6 col-lg-9 col-md-9">
+      <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary" value="Submit">
+     </form>
+     <br/>
+     {% if is_data_exist == False %}
+        <div class="alert alert-danger" role="alert">
+            No Data To Display
+        </div>
+      {% endif %}
+      {% if match_wise_details %}
+        <div class="col-lg-6 col-sm-12">
+        {% for key,value in match_wise_details.items %}
+         <h1 class="align-self-center">Match Held on {{ value.match_info.date }}</h1>
+          <table class="styled_table">
+            <thead>
+              <th>City</th>
+              <th>Venue</th>
+              <th>Team 1</th>
+              <th>Team 2</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ value.match_info.city }}</td>
+                <td>{{ value.match_info.venue }}</td>
+                <td>{{ value.match_info.team_1 }}</td>
+                <td>{{ value.match_info.team_2 }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h1>Bowlers Details</h1>
+           <table class="styled_table">
+            <thead>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Wickets Taken</th>
+              <th>Runs Given</th>
+              <th>Overs Bowled</th>
+              <th>Economy</th>
+            </thead>
+          {% for bowler in value.bowlers_info %}
+            <tbody>
+              <tr>
+                <td>{{ bowler.name }}</td>
+                <td>{{ bowler.team }}</td>
+                <td>{{ bowler.wickets_taken }}</td>
+                <td>{{ bowler.runs_given }}</td>
+                <td>{{ bowler.overs_bowled }}</td>
+                <td>{{ bowler.economy }}</td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- <div class="row">
+      <picture>
+        <img src="{% static 'graph/bowlers/top_10_bowlers.jpg' %}" class="img-fluid" alt="Top 10 Bowlers">
+      </picture>
+    </div> -->
+  </div>
+</div>
+  </div>
+
+{% endblock %}

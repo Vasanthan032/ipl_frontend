@@ -34,13 +34,19 @@
   margin-bottom: 2rem;
   background-color: var(--bs-light);
   border-radius: .3rem;
-  background-color: #e8ecef;
+  background-color: #f5f5ff;
 }
-.main {
-  height: calc(100% - 50px);
-  display: flex;
-  flex: 1;
+.green_jumbotron {
+  padding: 0.65rem 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--bs-light);
+  border-radius: .3rem;
+  color: #2ea336;
+  /* border: 2px #96fab1; */
+  /* border-color: #96fab1; */
+  background-color: #d4ffd7;
 }
+
 .sidebar {
   height: 100%;
   width: 220px;
@@ -136,4 +142,21 @@
 select {
   background: #e8ecef;
   color: black;
+}
+
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.center-img-home {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.a-name{
+  text-decoration: none;
+  color:black;
 }

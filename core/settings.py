@@ -12,6 +12,11 @@ SECRET_KEY = 'django-insecure-_3fx-v!f8vl2sf1^=2#ce^&v4@l2^_osp!0i)swomz%*-39tog
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+URL = 'http://localhost:8000'
+
+if not DEBUG:
+    URL = 'http://18.222.134.46'
+
 
 ALLOWED_HOSTS = []
 
@@ -108,7 +113,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = 'users/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR.joinpath("users/static/")
 
 LOGIN_REDIRECT_URL = 'test'
