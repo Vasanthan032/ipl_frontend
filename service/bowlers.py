@@ -1,10 +1,11 @@
 import requests
 import pandas as pd
 from util.graph import Graph
+from django.conf import settings
 
 class BowlersService:
   def __init__(self):
-    self.BASE_URL = 'http://localhost:8000/api/bowlers'
+    self.BASE_URL = f'{settings.URL}/api/bowlers'
     self.graph = Graph()
   
   def get_top_10_bowlers(self,request):
