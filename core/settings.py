@@ -14,8 +14,8 @@ SECRET_KEY = 'django-insecure-_3fx-v!f8vl2sf1^=2#ce^&v4@l2^_osp!0i)swomz%*-39tog
 DEBUG = False
 URL = 'http://localhost:8000'
 
-# if not DEBUG:
-#     URL = 'http://18.222.134.46'
+if not DEBUG:
+    URL = 'http://3.17.144.81'
 
 
 ALLOWED_HOSTS = ['*']
