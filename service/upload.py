@@ -1,9 +1,10 @@
 import requests
 import pandas as pd
 from django.http import QueryDict
+from django.conf import settings
 class UploadService:
   def __init__(self):
-    self.BASE_URL = 'http://localhost:8000/api'
+    self.BASE_URL = f'{settings.URL}/api'
   
   def match_details(self,request):
     url = f'{self.BASE_URL}/match_details/upload'

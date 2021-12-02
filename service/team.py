@@ -1,10 +1,11 @@
 import requests
 import pandas as pd
 from util.graph import Graph
+from django.conf import settings
 
 class TeamService:
   def __init__(self):
-    self.BASE_URL = 'http://localhost:8000/api/match_details'
+    self.BASE_URL = f'{settings.URL}/api/match_details'
     self.graph = Graph()
 
   def get_stadium_name_with_max_win(self,year,team_name):
@@ -25,10 +26,8 @@ class TeamService:
     params = {'year': year, 'team_name':team_name}
     data = requests.get(url, params)
     winning_percentage = data.json()
-    print('hello2')
 
     df = pd.DataFrame(winning_percentage)
-    print('hello1')
     file_name = self.graph.create_pi_chart(df=df,title='Winning Percentage of a Team, if they won the toss', year=year, team_name=team_name)
     return file_name
 

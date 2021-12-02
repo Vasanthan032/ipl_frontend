@@ -69,7 +69,6 @@ class Graph:
     s3_result = self.save_to_s3(buf,file_name)
     if s3_result:
       file_path = f'{self.S3_GRAPH_FILE_PATH}/{file_name}'
-      print(file_path)
       return file_path
     return None
     

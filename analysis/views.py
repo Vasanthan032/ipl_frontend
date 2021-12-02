@@ -132,13 +132,10 @@ class TeamStadiumNameWithMaxWin(LoginRequiredMixin,  generic.ListView):
         team_service = TeamService()
         data = request.POST
         file_path = team_service.get_stadium_name_with_max_win(data['year'], data['team_name'])
-        # print('Hello')
         form_class = forms.FilterForm
         is_data_exist = True
         if file_path is None:
             is_data_exist = False
-            print('empty')
-        # print('render')
         return render(request,'analysis/team/team_stadium_name_max_win.html',{'form':form_class,
                       'file_path':file_path,'is_data_exist':is_data_exist})
 

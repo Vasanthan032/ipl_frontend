@@ -1,10 +1,11 @@
 import requests
 import pandas as pd
 from util.graph import Graph
+from django.conf import settings
 
 class BatsmenService:
   def __init__(self):
-    self.BASE_URL = 'http://localhost:8000/api/batsmen'
+    self.BASE_URL = f'{settings.URL}/api/batsmen'
     self.graph = Graph()
   def get_top_10_batsmen(self,request):
       url = f'{self.BASE_URL}/get_top_batsmen'
