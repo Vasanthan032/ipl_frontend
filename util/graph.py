@@ -47,12 +47,11 @@ class Graph:
     plt.figure(figsize=(15,8),dpi=100)
     plt.style.use('ggplot')
     sns.set_theme(style="darkgrid")
-    ax = sns.barplot(y=x_col,x=y_col,data=df, hue='team',palette="tab10")
+    ax = sns.barplot(y=x_col,x=y_col,data=df,palette='flare')
     ax.set(xlabel=y_label, ylabel='')
 
     if team_name == 'None':
       ax.set_title(f'{year.upper()} TOP10 {category.upper()}', size=15)
-      plt.legend(title = 'Team Name')
     else:
       ax.set_title(f'{str(team_name).upper()} {year.upper()} TOP10 {category.upper()}', size=15)
 

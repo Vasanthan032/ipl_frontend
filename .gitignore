@@ -139,3 +139,5 @@ users/static/graph/bowlers/
 users/static/graph/batsmen/
 users/static/graph/team/
 
+#settings
+settings.py
