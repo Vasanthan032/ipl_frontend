@@ -15,7 +15,7 @@ DEBUG = False
 URL = 'http://localhost:8000'
 
 if not DEBUG:
-    URL = 'http://3.17.144.81'
+    URL = 'http://18.117.180.148'
 
 
 ALLOWED_HOSTS = ['*']
