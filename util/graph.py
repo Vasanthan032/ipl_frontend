@@ -12,8 +12,8 @@ class Graph:
     self.S3_GRAPH_FILE_PATH = 'https://de-project-graphs.s3.us-east-2.amazonaws.com'
     #Creating Session With Boto3.
     self.session = boto3.Session(
-    aws_access_key_id='AKIAQ5CABQ424JLFIZXC',
-    aws_secret_access_key='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'
+    aws_access_key_id='############',
+    aws_secret_access_key='#########################################'
     )
 
   def create_bowler_barplot(self,df,x_label,y_label,x_col,y_col):
